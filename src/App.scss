@@ -124,7 +124,6 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
   padding: 1.5em;
-  min-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -179,12 +178,8 @@
 
   .actions {
     text-align: right;
-    opacity: 0;
 
-    transition-property: opacity;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
-    img{
+    img {
       cursor: pointer;
     }
 
@@ -192,24 +187,40 @@
       margin-left: 1em;
     }
   }
-  &:hover > .actions{
+}
+
+@media screen and (min-width: 769px) {
+  .actions {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .card:hover>.actions {
     opacity: 1;
   }
 }
 
+
 .grid {
   display: grid;
-
   @media screen and (min-width: 769px) {
     max-width: 1200px;
     margin: 0 auto;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 3.5em;
-    grid-row-gap: 3.5em;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));;
+    grid-gap: 3.5em;
   }
 
   @media screen and (max-width: 768px) {
     padding: 0 2em;
     grid-row-gap: 2.5em;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .grid:last-child {
+    margin-bottom: 5em!important;
   }
 }
