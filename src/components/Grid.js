@@ -6,7 +6,7 @@ class Grid extends Component {
   render() {
     return (
       <div className="grid">
-          {this.props.items.map(el => <Card language={el.languageWord} translated={el.translation} key={el.id}/>)} 
+          {this.props.items.map(el => <Card language={el.languageWord} translated={el.translation} code={el.languageCode} key={el.id}/>)} 
       </div>
     );
   }
