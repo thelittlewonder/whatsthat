@@ -1,0 +1,215 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/Inter-Regular.woff2") format("woff2"),
+    url("./fonts/Inter-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url("./fonts/Inter-SemiBold.woff2") format("woff2"),
+    url("./fonts/Inter-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/Inter-Bold.woff2") format("woff2"),
+    url("./fonts/Inter-Bold.woff") format("woff");
+}
+
+.footer {
+  background-color: #333333;
+  padding: 1em 1.5em;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+
+  p {
+    font-family: Inter;
+    color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875em;
+    line-height: normal;
+
+    a {
+      color: #aaa;
+    }
+  }
+}
+
+.header {
+  .top {
+    height: 4px;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    position: fixed;
+    background: #333333;
+  }
+
+  .logo {
+    padding: 3em;
+    text-align: center;
+  }
+}
+
+.search {
+  text-align: center;
+  margin: 2em 0 4em 0;
+
+  form {
+    ::-webkit-input-placeholder {
+      color: rgba(51, 51, 51, 0.5);
+    }
+
+    ::-moz-placeholder {
+      color: rgba(51, 51, 51, 0.5);
+    }
+
+    input {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      border-radius: 2px;
+      font-family: Inter;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.125em;
+      line-height: normal;
+      padding: 0.5em;
+      color: rgba(51, 51, 51, 1);
+      transition-property: border;
+      transition-duration: 0.25s;
+      transition-timing-function: ease-in-out;
+
+      &:focus {
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        outline: none;
+      }
+    }
+
+    button {
+      background: #333333;
+      border-radius: 2px;
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: normal;
+      color: #FDFDFD;
+      padding: 0.5em;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0px 1px 0px rgba(51, 51, 51, 0.15);
+      margin-left: 1.5em;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #F5F5F5;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 1.5em;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  @media screen and (min-width: 769px) {
+    .divider {
+      margin: 0.75em 0 2em 0;
+    }
+
+    .actions {
+      margin-top: 2em;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .divider {
+      margin: 0.5em 0 1em 0;
+    }
+
+    .actions {
+      margin-top: 1em;
+    }
+  }
+
+  h2 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875em;
+    line-height: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999999;
+  }
+
+  .divider {
+    height: 0px;
+    width: 20px;
+    border: 1px solid #CCCCCC;
+    align-self: center;
+  }
+
+  h3 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.75em;
+    line-height: normal;
+    color: #333333;
+  }
+
+  .actions {
+    text-align: right;
+    opacity: 0;
+
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+    img{
+      cursor: pointer;
+    }
+
+    img:last-child {
+      margin-left: 1em;
+    }
+  }
+  &:hover > .actions{
+    opacity: 1;
+  }
+}
+
+.grid {
+  display: grid;
+
+  @media screen and (min-width: 769px) {
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 3.5em;
+    grid-row-gap: 3.5em;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 2em;
+    grid-row-gap: 2.5em;
+  }
+}
