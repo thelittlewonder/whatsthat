@@ -205,22 +205,25 @@
 
 .grid {
   display: grid;
+
   @media screen and (min-width: 769px) {
     max-width: 1200px;
     margin: 0 auto;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 3.5em;
+    margin-bottom: 5em;
   }
 
   @media screen and (max-width: 768px) {
     padding: 0 2em;
     grid-row-gap: 2.5em;
+    margin-bottom: 5em;
   }
 }
 
 
 @media screen and (max-width: 768px) {
   .grid:last-child {
-    margin-bottom: 5em!important;
+    margin-bottom: 5em !important;
   }
 }
