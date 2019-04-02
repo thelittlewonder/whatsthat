@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Sound from '../sound.svg';
 import Copy from '../copy.svg';
+import Toastify from 'toastify-js'
+
 
 class Card extends Component {
   copyText = (e) => {
     const el = document.createElement("textarea"); 
-    el.value = e.target.parentNode.parentNode.childNodes[2].innerHTML; 
+    el.value = e.target.parentNode.parentNode.childNodes[0].innerHTML; 
     el.setAttribute("readonly", ""); 
     el.style.position = "absolute";
     el.style.left = "-9999px"; 
@@ -22,16 +24,32 @@ class Card extends Component {
       document.getSelection().removeAllRanges(); // Unselect everything on the HTML document
       document.getSelection().addRange(selected); // Restore the original selection
     }  
+    //show toast
+    Toastify({
+      text: "Copied to Clipboard!",
+      duration: 1000,
+      gravity: "top",
+      positionLeft: false, 
+      className: 'toast',
+      backgroundColor: "#333",
+    }).showToast();
   }
 
   speakText = (e) => {
     if ('speechSynthesis' in window) {
       var msg = new SpeechSynthesisUtterance();
-      msg.text = e.target.parentNode.parentNode.childNodes[2].innerHTML;
+      msg.text = e.target.parentNode.parentNode.childNodes[0].innerHTML;
       msg.lang = e.target.parentNode.parentNode.lang;
       window.speechSynthesis.speak(msg);
     } else{
-      console.log('Speech Synthesis Not Supported in Browser. Upgrade to Chrome')      
+      Toastify({
+        text: "Speech Synthesis Not Supported in your Browser :(",
+        duration: 3000,
+        gravity: "top",
+        positionLeft: false, 
+        className: 'toast',
+        backgroundColor: "#EF5350",
+      }).showToast();   
     }
   }
 
@@ -43,7 +61,7 @@ class Card extends Component {
         <h3>{this.props.translated}</h3>
         <div className="actions">
           <img src={Sound} alt="Speak Translation" title="Speak" onClick={this.speakText}/>
-          <img src={Copy} alt="Copy Translation" title="Copy to Clipboard" onClick={this.copyTex}/>
+          <img src={Copy} alt="Copy Translation" title="Copy to Clipboard" onClick={this.copyText}/>
         </div>
       </div>
     );

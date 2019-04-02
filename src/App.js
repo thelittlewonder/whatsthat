@@ -84,7 +84,7 @@ class App extends Component {
 
   renderContent = () => {
     return(
-       this.state.showResults  ? <Grid items={this.state.translatedWords}/> : <Loader/>
+       !this.state.showResults  ? <Grid items={this.state.translatedWords}/> : <Loader/>
     )
   }
 
