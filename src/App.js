@@ -96,7 +96,7 @@ class App extends Component {
   
   translate = (query) => {
     this.setState({firstTime: false});
-    setCORS("http://cors-anywhere.herokuapp.com/");
+    setCORS("https://cors-anywhere.herokuapp.com/");
     this.setState({showResults: false});
     this.state.translatedWords.forEach(lang => {
       translate(query, { to: lang.languageCode })
