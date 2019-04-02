@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.scss';
 import Illustration from '../emptystate.svg';
 
 class EmptyState extends Component {

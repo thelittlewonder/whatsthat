@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Search from './components/Search';
 import Header from './components/Header';
 import Grid from './components/Grid';
+import Loader from './components/Loader';
 import EmptyState from './components/EmptyState';
 import Footer from './components/Footer';
-import './App.scss';
-
+import translate, { setCORS } from "google-translate-api-browser";
 class App extends Component {
   state = {
       translatedWords : [
@@ -17,8 +17,8 @@ class App extends Component {
       },
       {
         id:2,
-        languageCode:'es',
-        languageWord:'Spanish',
+        languageCode:'de',
+        languageWord:'German',
         translation:''
       },
       {
@@ -35,8 +35,8 @@ class App extends Component {
       },
       {
         id:5,
-        languageCode:'de',
-        languageWord:'German',
+        languageCode:'es',
+        languageWord:'Spanish',
         translation:''
       },
       {
@@ -62,17 +62,63 @@ class App extends Component {
         languageCode:'pt',
         languageWord:'Portugese',
         translation:''
-      },
+      }
     ],
-    query: ''
+    showResults: false,
+    firstTime: true
+  }
+
+  renderLoader = () => {
+    return (
+      <Loader/>
+    );
+  }
+
+  renderResults = () => {
+    return(
+      <Grid items={this.state.translatedWords}/>
+    );
+  }
+
+  
+
+  renderContent = () => {
+    return(
+       this.state.showResults  ? <Grid items={this.state.translatedWords}/> : <Loader/>
+    )
+  }
+
+  renderFirstTime = () => {
+    return (
+      <EmptyState/>
+    );
+  }
+  
+  translate = (query) => {
+    this.setState({firstTime: false});
+    setCORS("http://cors-anywhere.herokuapp.com/");
+    this.setState({showResults: false});
+    this.state.translatedWords.forEach(lang => {
+      translate(query, { to: lang.languageCode })
+        .then(res => {
+          let a = this.state.translatedWords;
+          let obj = a.find(obj => obj.languageCode === lang.languageCode);
+          obj.translation  = res.text;
+          this.setState({translatedWords: a});
+          this.setState({showResults: true});
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    });
   }
 
   render() {
-    return (
+    return ( 
       <div className="App">
           <Header/>
-          <Search value={this.state.query}/>
-          <Grid items={this.state.translatedWords}/>
+          <Search translate={this.translate}/>
+          { this.state.firstTime ? this.renderFirstTime() : this.renderContent()}
           <Footer/>
       </div>
     );

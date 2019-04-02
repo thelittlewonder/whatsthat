@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.scss';
 import Sound from '../sound.svg';
 import Copy from '../copy.svg';
 
@@ -28,7 +27,7 @@ class Card extends Component {
   speakText = (e) => {
     if ('speechSynthesis' in window) {
       var msg = new SpeechSynthesisUtterance();
-      msg.text = e.target.parentNode.parentNode.childNodes[0].innerHTML;
+      msg.text = e.target.parentNode.parentNode.childNodes[2].innerHTML;
       msg.lang = e.target.parentNode.parentNode.lang;
       window.speechSynthesis.speak(msg);
     } else{
