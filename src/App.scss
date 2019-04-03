@@ -252,6 +252,15 @@
   .grid:last-child {
     margin-bottom: 5em !important;
   }
+  .cube-wrapper{
+    top:65vh;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .cube-wrapper{
+    top:50vh;
+  }
 }
 
 .emptystate {
@@ -431,7 +440,6 @@
   .cube-wrapper {
     position: fixed;
     left: 50%;
-    top: 50%;
     margin-top: -50px;
     margin-left: -50px;
     width: 100px;
@@ -479,3 +487,4 @@
   }
 
 }
+
