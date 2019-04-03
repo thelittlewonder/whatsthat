@@ -85,7 +85,7 @@ class App extends Component {
 
   renderContent = () => {
     return(
-       !this.state.showResults  ? <Grid items={this.state.translatedWords}/> : <Loader/>
+       !this.state.showResults  ?  <Loader/> : <Grid items={this.state.translatedWords}/>
     )
   }
 
@@ -96,8 +96,8 @@ class App extends Component {
   }
   
   translate = (query) => {
-    this.setState({showResults: false});
     this.setState({firstTime: false});
+    this.setState({showResults: false});
     this.state.translatedWords.forEach(lang => {
       let reqUrl = 'https://wutsthat.herokuapp.com/?q='+query+'&lang='+lang.languageCode;
       request(reqUrl, (error, response, body) => {
@@ -105,7 +105,7 @@ class App extends Component {
         let obj = a.find(obj => obj.languageCode === lang.languageCode);
         obj.translation  = body;
         this.setState({translatedWords: a});
-        //this.setState({showResults: true});
+        this.setState({showResults: true});
       });
     });
   }
