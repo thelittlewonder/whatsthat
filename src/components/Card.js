@@ -42,6 +42,7 @@ class Card extends Component {
       msg.lang = e.target.parentNode.parentNode.lang;
       window.speechSynthesis.speak(msg);
     } else{
+      console.log('Speech Synthesis Not Supported in your Browser :(');
       Toastify({
         text: "Speech Synthesis Not Supported in your Browser :(",
         duration: 3000,
