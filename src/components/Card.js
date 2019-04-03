@@ -7,7 +7,7 @@ import Toastify from 'toastify-js'
 class Card extends Component {
   copyText = (e) => {
     const el = document.createElement("textarea"); 
-    el.value = e.target.parentNode.parentNode.childNodes[0].innerHTML; 
+    el.value = e.target.parentNode.parentNode.childNodes[2].innerHTML; 
     el.setAttribute("readonly", ""); 
     el.style.position = "absolute";
     el.style.left = "-9999px"; 
@@ -38,7 +38,7 @@ class Card extends Component {
   speakText = (e) => {
     if ('speechSynthesis' in window) {
       var msg = new SpeechSynthesisUtterance();
-      msg.text = e.target.parentNode.parentNode.childNodes[0].innerHTML;
+      msg.text = e.target.parentNode.parentNode.childNodes[2].innerHTML;
       msg.lang = e.target.parentNode.parentNode.lang;
       window.speechSynthesis.speak(msg);
     } else{

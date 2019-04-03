@@ -5,7 +5,8 @@ import Grid from './components/Grid';
 import Loader from './components/Loader';
 import EmptyState from './components/EmptyState';
 import Footer from './components/Footer';
-import translate, { setCORS } from "google-translate-api-browser";
+const request = require('request');
+
 class App extends Component {
   state = {
       translatedWords : [
@@ -47,8 +48,8 @@ class App extends Component {
       },
       {
         id:7,
-        languageCode:'zu',
-        languageWord:'Zulu',
+        languageCode:'el',
+        languageWord:'Greek',
         translation:''
       },
       {
@@ -97,19 +98,15 @@ class App extends Component {
   translate = (query) => {
     this.setState({showResults: false});
     this.setState({firstTime: false});
-    setCORS("https://cors-anywhere.herokuapp.com/");
     this.state.translatedWords.forEach(lang => {
-      translate(query, { to: lang.languageCode })
-        .then(res => {
-          let a = this.state.translatedWords;
-          let obj = a.find(obj => obj.languageCode === lang.languageCode);
-          obj.translation  = res.text;
-          this.setState({translatedWords: a});
-          this.setState({showResults: true});
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      let reqUrl = 'https://wutsthat.herokuapp.com/?q='+query+'&lang='+lang.languageCode;
+      request(reqUrl, (error, response, body) => {
+        let a = this.state.translatedWords;
+        let obj = a.find(obj => obj.languageCode === lang.languageCode);
+        obj.translation  = body;
+        this.setState({translatedWords: a});
+        //this.setState({showResults: true});
+      });
     });
   }
 
